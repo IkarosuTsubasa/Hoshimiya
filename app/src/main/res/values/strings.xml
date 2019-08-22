@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gps Support</string>
+    <string name="StartButton">Start Button</string>
+    <string name="StopButton">Stop Button</string>
+</resources>

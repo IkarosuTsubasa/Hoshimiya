@@ -38,6 +38,9 @@ class TopFragment : Fragment() {
                     startGPSLocationService()
                 }
             }
+            stopButton.setOnClickListener {
+                context.stopService(Intent(context, GpsService::class.java))
+            }
         }
         return view
     }
@@ -61,8 +64,7 @@ class TopFragment : Fragment() {
                 startActivity(settingsIntent)
             } else {
                 context?.let { context ->
-                    val intent = Intent(context, GpsService::class.java)
-                    startForegroundService(context, intent)
+                    startForegroundService(context, Intent(context, GpsService::class.java))
                 }
             }
         }

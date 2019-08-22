@@ -48,13 +48,17 @@ class GpsService : Service() {
     @SuppressLint("MissingPermission")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val context = applicationContext
+        val notificationBuild: Notification.Builder?
+
         val pendingIntent = PendingIntent.getActivity(
             context, requestCode,
             intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
-        val notificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         if (Build.VERSION.SDK_INT >= 26) {
+            val notificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
             val channel =
                 NotificationChannel(channelId, title, NotificationManager.IMPORTANCE_DEFAULT)
             channel.apply {
@@ -64,17 +68,21 @@ class GpsService : Service() {
                 enableVibration(false)
             }
             notificationManager.createNotificationChannel(channel)
+
+            notificationBuild = Notification.Builder(context, channelId)
+        } else {
+            notificationBuild = Notification.Builder(context)
         }
 
-        val notification = Notification.Builder(context, channelId)
-            .setContentTitle(title)
+        val notification = notificationBuild.setContentTitle(title)
             .setSmallIcon(android.R.drawable.btn_star)
             .setContentText("GPS")
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .setWhen(System.currentTimeMillis())
             .build()
-        startForeground(1, notification)
+
+        startForeground(275, notification)
 
         locationManager?.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,

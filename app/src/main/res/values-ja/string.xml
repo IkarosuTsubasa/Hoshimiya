@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">位置情報補正くん</string>
+    <string name="start_button">GPSで補正開始</string>
+    <string name="stop_button">補正停止</string>
+    <string name="app_description">アプリ説明\n屋外にいる時、位置情報がよくWi-FiやBluetoothで影響されます。このアプリはGPSだけを使ってあなたの正しい位置情報を検知します。</string>
+</resources>

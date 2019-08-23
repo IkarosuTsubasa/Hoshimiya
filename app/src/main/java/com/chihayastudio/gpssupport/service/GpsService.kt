@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import com.chihayastudio.gpssupport.MainActivity
+import com.chihayastudio.gpssupport.R
 import com.chihayastudio.gpssupport.receiver.StopServiceReceiver
 
 class GpsService : Service() {
@@ -23,23 +24,19 @@ class GpsService : Service() {
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onProviderDisabled(p0: String?) {
-            Log.d("星宮いちご1", p0)
         }
 
         override fun onProviderEnabled(p0: String?) {
-            Log.d("星宮いちご2", p0)
         }
 
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-            Log.d("星宮いちご3", p0)
         }
 
         override fun onLocationChanged(p0: Location?) {
-            locationLongitude = p0?.longitude
-            locationLatitude = p0?.latitude
-            notificationBuild?.setContentText("$locationLatitude, $locationLongitude")
-            notificationManager?.notify(notificationId, notificationBuild?.build())
-            Log.d("星宮いちご4", p0.toString())
+//            locationLongitude = p0?.longitude
+//            locationLatitude = p0?.latitude
+//            notificationBuild?.setContentText("$locationLatitude, $locationLongitude")
+//            notificationManager?.notify(notificationId, notificationBuild?.build())
         }
 
     }
@@ -97,9 +94,9 @@ class GpsService : Service() {
                 .build()
 
         notificationBuild?.let {
-            val notification = it.setContentTitle(title)
+            val notification = it
                 .setSmallIcon(android.R.drawable.btn_star)
-                .setContentText("searching")
+                .setContentText("補正中...")
                 .setContentIntent(pendingIntent)
                 .setWhen(System.currentTimeMillis())
                 .addAction(stopServiceAction)
@@ -122,7 +119,6 @@ class GpsService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         stopGPS()
-        Log.d("星宮いちご", "close")
     }
 
     companion object {

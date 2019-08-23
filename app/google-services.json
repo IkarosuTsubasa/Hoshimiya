@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126610317873",
+    "firebase_url": "https://hoshimiya-16614.firebaseio.com",
+    "project_id": "hoshimiya-16614",
+    "storage_bucket": "hoshimiya-16614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126610317873:android:cf862adb485188e7",
+        "android_client_info": {
+          "package_name": "com.chihayastudio.gpssupport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126610317873-dml4vosjtgc4ii878th6pglgmarecmu5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chihayastudio.gpssupport",
+            "certificate_hash": "40cc7b7a99d7a90e15e205e9a2997546b98305b7"
+          }
+        },
+        {
+          "client_id": "126610317873-rf9lncmh96ktbptjlaptsr1vfv6q1c20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKw4d_JjARhlbn1n1XkmjVfXuoyhtBEoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126610317873-rf9lncmh96ktbptjlaptsr1vfv6q1c20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

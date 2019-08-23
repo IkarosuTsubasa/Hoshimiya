@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <service android:name=".service.GpsService" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2154555054261960~9506250974"/>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
 import android.content.Intent
 import androidx.core.content.ContextCompat.startForegroundService
 import com.chihayastudio.gpssupport.service.GpsService
+import com.google.android.gms.ads.AdRequest
 
 
 class TopFragment : Fragment() {
@@ -29,6 +30,7 @@ class TopFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_top, container, false)
         locationManager = context?.getSystemService(LOCATION_SERVICE) as LocationManager
+        val adRequest = AdRequest.Builder().build()
 
         view.apply {
             startButton.setOnClickListener {
@@ -41,6 +43,7 @@ class TopFragment : Fragment() {
             stopButton.setOnClickListener {
                 context.stopService(Intent(context, GpsService::class.java))
             }
+            adView.loadAd(adRequest)
         }
         return view
     }

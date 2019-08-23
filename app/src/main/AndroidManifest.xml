@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".receiver.StopServiceReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+
         <service android:name=".service.GpsService" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

@@ -10,23 +10,24 @@ import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
 import com.chihayastudio.gpssupport.MainActivity
 import com.chihayastudio.gpssupport.R
 import com.chihayastudio.gpssupport.receiver.StopServiceReceiver
 
 class GpsService : Service() {
     private var locationManager: LocationManager? = null
-    private var locationLatitude: Double? = null
-    private var locationLongitude: Double? = null
     private var notificationBuild: Notification.Builder? = null
     private var notificationManager: NotificationManager? = null
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onProviderDisabled(p0: String?) {
+            notificationBuild?.setContentText(applicationContext.getString(R.string.gps_off))
+            notificationManager?.notify(notificationId, notificationBuild?.build())
         }
 
         override fun onProviderEnabled(p0: String?) {
+            notificationBuild?.setContentText(applicationContext.getString(R.string.working))
+            notificationManager?.notify(notificationId, notificationBuild?.build())
         }
 
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
@@ -89,14 +90,14 @@ class GpsService : Service() {
 
         val stopServiceAction: Notification.Action =
             Notification.Action.Builder(
-                android.R.drawable.btn_star, "STOP", hide
+                android.R.drawable.ic_menu_mylocation, "STOP", hide
             )
                 .build()
 
         notificationBuild?.let {
             val notification = it
-                .setSmallIcon(android.R.drawable.btn_star)
-                .setContentText("補正中...")
+                .setSmallIcon(android.R.drawable.ic_menu_mylocation)
+                .setContentText(context.getString(R.string.working))
                 .setContentIntent(pendingIntent)
                 .setWhen(System.currentTimeMillis())
                 .addAction(stopServiceAction)

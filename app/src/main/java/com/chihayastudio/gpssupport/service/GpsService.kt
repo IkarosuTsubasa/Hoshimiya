@@ -93,12 +93,12 @@ class GpsService : Service() {
 
         val stopServiceAction: Notification.Action =
             Notification.Action.Builder(
-                android.R.drawable.ic_menu_mylocation, "STOP", hide
+                android.R.drawable.ic_menu_close_clear_cancel, "STOP", hide
             )
                 .build()
 
         notificationBuild?.let {
-            val notification = it
+            val notification = it.setContentTitle(getString(R.string.location_information))
                 .setSmallIcon(android.R.drawable.ic_menu_mylocation)
                 .setContentText(context.getString(R.string.working))
                 .setContentIntent(pendingIntent)

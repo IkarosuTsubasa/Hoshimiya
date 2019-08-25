@@ -8,4 +8,5 @@
     <string name="gps_off">位置情報の設定はOFFになりました、設定からONにしてください</string>
     <string name="latitude">緯度</string>
     <string name="longitude">経度</string>
+    <string name="location_information">位置情報</string>
 </resources>

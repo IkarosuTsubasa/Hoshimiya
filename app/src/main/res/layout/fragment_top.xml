@@ -62,8 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-2154555054261960/4992290896" />
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
     </LinearLayout>
     <!--testAdID ca-app-pub-3940256099942544/6300978111-->
+    <!--ReleaseAdID ca-app-pub-2154555054261960/4992290896-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

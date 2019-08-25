@@ -5,4 +5,6 @@
     <string name="app_description">App description \n When you are outdoors, location information is often affected by Wi-Fi or Bluetooth. This app uses only GPS to detect your correct location information.</string>
     <string name="working">working…</string>
     <string name="gps_off">The location setting has been turned off, please turn it on</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
 </resources>

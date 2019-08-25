@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -13,6 +14,7 @@ import android.os.IBinder
 import com.chihayastudio.gpssupport.MainActivity
 import com.chihayastudio.gpssupport.R
 import com.chihayastudio.gpssupport.receiver.StopServiceReceiver
+
 
 class GpsService : Service() {
     private var locationManager: LocationManager? = null
@@ -34,12 +36,13 @@ class GpsService : Service() {
         }
 
         override fun onLocationChanged(p0: Location?) {
-//            locationLongitude = p0?.longitude
-//            locationLatitude = p0?.latitude
-//            notificationBuild?.setContentText("$locationLatitude, $locationLongitude")
-//            notificationManager?.notify(notificationId, notificationBuild?.build())
+            notificationBuild?.setContentText(
+                "${getString(R.string.latitude)}: ${p0?.latitude}, ${getString(
+                    R.string.longitude
+                )}: ${p0?.longitude}"
+            )
+            notificationManager?.notify(notificationId, notificationBuild?.build())
         }
-
     }
 
     override fun onBind(p0: Intent?): IBinder? {
@@ -105,9 +108,21 @@ class GpsService : Service() {
 
             startForeground(notificationId, notification)
         }
+
+        val criteria = Criteria()
+        criteria.accuracy = Criteria.ACCURACY_FINE
+        criteria.powerRequirement = Criteria.POWER_HIGH
+        criteria.isAltitudeRequired = false
+        criteria.isSpeedRequired = false
+        criteria.isCostAllowed = true
+        criteria.isBearingRequired = false
+
         locationManager?.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            MinTime, MinDistance, locationListener
+            MinTime,
+            MinDistance,
+            criteria,
+            locationListener,
+            null
         )
 
         return super.onStartCommand(intent, flags, startId)
@@ -124,7 +139,7 @@ class GpsService : Service() {
 
     companion object {
         private const val MinTime = 1000L
-        private const val MinDistance = 50f
+        private const val MinDistance = 1f
         private const val requestCode = 2757
         private const val notificationId = 1134
         private const val channelId = "GpsService"

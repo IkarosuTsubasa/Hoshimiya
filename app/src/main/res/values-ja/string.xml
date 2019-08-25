@@ -6,4 +6,6 @@
     <string name="app_description">アプリ説明\n屋外にいる時、位置情報がよくWi-FiやBluetoothで影響されます。このアプリはGPSだけを使ってあなたの正しい位置情報を検知します。</string>
     <string name="working">補正中…</string>
     <string name="gps_off">位置情報の設定はOFFになりました、設定からONにしてください</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">経度</string>
 </resources>

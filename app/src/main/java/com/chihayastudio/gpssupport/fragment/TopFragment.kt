@@ -49,7 +49,6 @@ class TopFragment : Fragment() {
                 }
             }
 
-//            startButton.visibility =
             stopButton.setOnClickListener {
                 context.stopService(Intent(context, GpsService::class.java))
                 changeButtonView()

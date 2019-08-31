@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -21,12 +22,17 @@ import com.chihayastudio.gpssupport.R
 import com.chihayastudio.gpssupport.service.GpsService
 import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.fragment_top.view.*
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.util.Log
 
 
 class TopFragment : Fragment() {
     private var locationManager: LocationManager? = null
     private var startButton: Button? = null
     private var stopButton: Button? = null
+    private var pckInfoList: List<PackageInfo>? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,6 +60,38 @@ class TopFragment : Fragment() {
                 changeButtonView()
             }
             adView.loadAd(adRequest)
+
+            pokemon_button.setOnClickListener {
+                launcherApp(
+                    packageName = "com.nianticlabs.pokemongo",
+                    className = "com.nianticproject.holoholo.libholoholo.unity.UnityMainActivity"
+                )
+            }
+            ekimemo_button.setOnClickListener {
+                launcherApp(
+                    packageName = "jp.mfapps.loc.ekimemo",
+                    className = "com.ekimemo.MainActivity"
+                )
+            }
+            harry_button.setOnClickListener {
+                launcherApp(
+                    packageName = "com.nianticlabs.hpwu.prod",
+                    className = "com.wbgames.xenon.mainactivity.MainActivity"
+                )
+            }
+            ingress_button.setOnClickListener {
+                launcherApp(
+                    packageName = "com.nianticproject.ingress",
+                    className = "com.nianticproject.ingress.IngressActivity"
+                )
+            }
+            onsen_button.setOnClickListener {
+                launcherApp(
+                    packageName = "jp.co.edia.onmusu",
+                    className = "com.onevcat.uniwebview.AndroidPlugin"
+                )
+            }
+
         }
         return view
     }
@@ -61,6 +99,10 @@ class TopFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         changeButtonView(isServiceWorking())
+
+        pckInfoList = activity!!.packageManager.getInstalledPackages(
+            PackageManager.GET_ACTIVITIES or PackageManager.GET_SERVICES
+        )
     }
 
     private fun checkPermission() {
@@ -146,6 +188,37 @@ class TopFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun launcherApp(packageName: String, className: String) {
+        if (haveApp(packageName)) {
+            val intent = Intent()
+            intent.setClassName(packageName, className)
+            startActivity(intent)
+        } else {
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$packageName")
+                    )
+                )
+            } catch (error: Exception) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+            }
+        }
+    }
+
+
+    private fun haveApp(packageName: String): Boolean {
+        pckInfoList?.let {
+            for (pckInfo in it) {
+                if (pckInfo.packageName == packageName) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     companion object {

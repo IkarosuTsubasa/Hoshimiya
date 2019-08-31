@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="319dp"
@@ -30,7 +29,7 @@
             android:id="@+id/startButton"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:text="@string/start_button" />
 
         <Button
@@ -49,7 +48,64 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/pokemon_button"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:foreground="@drawable/pokemon"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/ekimemo_button"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:foreground="@drawable/ekimemo"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/harry_button"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:foreground="@drawable/harry"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/onsen_button"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+
+            android:foreground="@drawable/onsen"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/ingress_button"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:foreground="@drawable/ingress"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
@@ -62,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            app:adUnitId="ca-app-pub-2154555054261960/4992290896" />
     </LinearLayout>
     <!--testAdID ca-app-pub-3940256099942544/6300978111-->
     <!--ReleaseAdID ca-app-pub-2154555054261960/4992290896-->
